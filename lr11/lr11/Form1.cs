@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,14 +17,42 @@ namespace lr11
         {
             InitializeComponent();
         }
+        private string GetHashString(string s)
+        {
+            byte[] bytes = Encoding.Unicode.GetBytes(s);
+            MD5CryptoServiceProvider CSP = new MD5CryptoServiceProvider();
+            byte[] byteHash = CSP.ComputeHash(bytes);
+            string hash = "";
+            foreach (byte b in byteHash)
+            {
+                hash += string.Format("{0:x2}", b);
+            }
+            return hash;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            using (UserContext db = new UserContext())
+            {
+                foreach (User user in db.Users)
+                {
+                    if (textBox1.Text == user.Login && this.GetHashString(textBox2.Text) == user.Password)
+                    {
+                        MessageBox.Show("Вход успешен!");
+                        Form4 form4 = new Form4();
+                        form4.label1.Text = user.Login;
+                        form4.Show();
+                        form4.form1 = this;
+                        this.Visible = false;
+                        return;
+                    }
+                }
+                MessageBox.Show("Логин или пароль указан неверно!");
 
+            }
         }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
+        { 
             Form2 form2 = new Form2(this);
             form2.Show();
         }
