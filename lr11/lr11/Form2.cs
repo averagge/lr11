@@ -13,14 +13,13 @@ namespace lr11
 {
     public partial class Form2 : Form
     {
+        public Form1 form1;
+
         public Form2()
         {
             InitializeComponent();
         }
-        public Form2(Form1 form1)
-        {
-            InitializeComponent();
-        }
+
         private string GetHashString(string s)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(s);
@@ -38,9 +37,15 @@ namespace lr11
         {
             using (UserContext db = new UserContext())
             {
-                User user = new User(textBox1.Text, this.GetHashString(textBox2.Text), textBox5.Text, textBox12.Text, textBox4.Text, textBox3.Text, textBox11.Text, textBox6.Text, textBox10.Text);
+                User user = new User(textBox1.Text, this.GetHashString(textBox2.Text), textBox5.Text,
+                    textBox12.Text, textBox4.Text, textBox3.Text, textBox11.Text, textBox6.Text, textBox10.Text);
                 db.Users.Add(user);
                 db.SaveChanges();
+                Form4 form4 = new Form4();
+                form4.Login(user.Login, user.LastName, user.Name, user.Phone, user.Email, user.Birth,
+                    user.Design, user.DateFirst);
+                form4.Show();
+                this.Close();
             }
         }
     }

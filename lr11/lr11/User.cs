@@ -22,7 +22,7 @@ namespace lr11
 
         public User()
         { }
-        public User(string Login, string Password, string Email, string Phone, string Name, string LastNasme,  string Design, string Birth, string DateFirst)
+        public User(string Login, string Password, string Email, string Phone, string Name, string LastName,  string Design, string Birth, string DateFirst)
         {
             this.Login = Login;
             this.Password = Password;
@@ -31,7 +31,7 @@ namespace lr11
             this.DateFirst = DateFirst;
             this.Design = Design;
             this.Name = Name;
-            this.LastName = LastNasme;
+            this.LastName = LastName;
             this.Phone = Phone;
 
         }

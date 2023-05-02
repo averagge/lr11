@@ -12,11 +12,8 @@ namespace lr11
 {
     public partial class Form3 : Form
     {
+        public Form1 form1;
         public Form3()
-        {
-            InitializeComponent();
-        }
-        public Form3(Form1 form1)
         {
             InitializeComponent();
         }
