@@ -45,6 +45,7 @@ namespace lr11
                 form4.Login(user.Login, user.LastName, user.Name, user.Phone, user.Email, user.Birth,
                     user.Design, user.DateFirst);
                 form4.Show();
+                form4.form1 = this.form1;
                 this.Close();
             }
         }
