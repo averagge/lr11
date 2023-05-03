@@ -17,7 +17,7 @@ namespace lr11
         {
             InitializeComponent();
         }
-        private string GetHashString(string s)
+        public string GetHashString(string s)
         {
             byte[] bytes = Encoding.Unicode.GetBytes(s);
             MD5CryptoServiceProvider CSP = new MD5CryptoServiceProvider();

@@ -15,11 +15,20 @@ namespace lr11
     public partial class Form3 : Form
     {
         public Form1 form1;
+        private string pass;
+        private Random random=new Random();
         public Form3()
         {
             InitializeComponent();
         }
-
+        private string Pass()
+        {
+            for(int i = 0; i < 8; i++)
+            {
+                pass+=random.Next(10);
+            }
+            return form1.GetHashString(pass);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             MailAddress from = new MailAddress("aleksejporfirev15@mail.ru", "Nikita");
@@ -32,9 +41,12 @@ namespace lr11
                 {
                     if (textBox1.Text == user.Email)
                     {
-                        m.Body = "<h1>Пароль: " + user.Password + "</h1>";
+                        user.Password = Pass();
+                        m.Body = "<h1>Новый пароль: " + pass + "</h1>";
                     }
                 }
+                db.SaveChanges();
+
             }
             m.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
