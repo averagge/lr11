@@ -17,6 +17,7 @@ namespace lr11
         public Form1 form1;
         private string pass;
         private Random random=new Random();
+        private string simbols = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
         public Form3()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace lr11
         {
             for(int i = 0; i < 8; i++)
             {
-                pass+=random.Next(10);
+                pass+=simbols[random.Next(62)];
             }
             return form1.GetHashString(pass);
         }

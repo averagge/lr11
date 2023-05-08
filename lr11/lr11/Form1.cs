@@ -38,7 +38,6 @@ namespace lr11
                 {
                     if (textBox1.Text == user.Login && this.GetHashString(textBox2.Text) == user.Password)
                     {
-                        MessageBox.Show("Вход успешен!");
                         Form4 form4 = new Form4();
                         form4.Login(user.Login, user.LastName, user.Name, user.Phone, user.Email, user.Birth,
                             user.Design, user.DateFirst);
